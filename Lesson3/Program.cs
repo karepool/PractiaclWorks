@@ -1,20 +1,18 @@
-﻿using Lesson3.Tasks;
-
-namespace Lesson3;
+﻿namespace Lesson3;
 
 public class Program {
     
     public static void Main(string[] args) {
         Console.WriteLine("THE FIRST TASK");
-        Task1.Start();
+        Tasks.StartFirstTask();
         Console.WriteLine("THE SECOND TASK");
-        Task2.Start();
+        Tasks.StartSecondTask();
         Console.WriteLine("THE THIRD TASK");
-        Task3.Start();
+        Tasks.StartThirdTask();
         Console.WriteLine("THE FOURTH TASK");
-        Task4.Start();
+        Tasks.StartFourthTask();
         Console.WriteLine("THE FIFTH TASK");
-        Task5.Start();
+        Tasks.StartFifthTask();
     }
 
 }
