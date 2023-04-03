@@ -26,14 +26,39 @@ public static class Tasks {
                 Console.Write("Enter the card value (Jack - J, Queen - Q, King - K, Ace - A): ");
                 input = Console.ReadLine();
 
-                if(input == "J" || input == "Q" || input == "K" || input == "A") {
-                    sum += 10;
-                    flag = true;
+                switch(input) {
+                    case "J":
+                        sum += 10;
+                        flag = true;
+                        break;
+                    case "Q":
+                        sum += 10;
+                        flag = true;
+                        break;
+                    case "K":
+                        sum += 10;
+                        flag = true;
+                        break;
+                    case "A":
+                        sum += 10;
+                        flag = true;
+                        break;
+                    default:
+                        if(int.TryParse(input, out value)) {
+                            sum += value;
+                            flag = true;
+                        }
+                        break;
                 }
-                else if(int.TryParse(input, out value)) {
-                    sum += value;
-                    flag = true;
-                }
+
+                //if(input == "J" || input == "Q" || input == "K" || input == "A") {
+                //    sum += 10;
+                //    flag = true;
+                //}
+                //else if(int.TryParse(input, out value)) {
+                //    sum += value;
+                //    flag = true;
+                //}
                 if(!flag) Console.WriteLine("Error. Try again!!!");
 
             } while(!flag);
@@ -80,20 +105,31 @@ public static class Tasks {
         int upperLimit = int.Parse(Console.ReadLine());
         var rand = new Random();
         int guessedNumber = rand.Next(upperLimit + 1);
-        string input;
+        string? inputString;
+        int inputInt;
 
         do {
-            Console.Write("Enter the estimated number (enter 'exit' to exit): ");
-            input = Console.ReadLine();
-
-            if(int.Parse(input) == guessedNumber) {
+            Console.Write("Enter the estimated number (press enter to exit): ");
+            inputString = Console.ReadLine();
+            if(inputString == "" || inputString == null) {
                 Console.WriteLine(guessedNumber + " is guess number");
                 break;
             }
+            inputInt = int.Parse(inputString);
+
+            if(inputInt == guessedNumber) {
+                Console.WriteLine(guessedNumber + " is guess number");
+                break;
+            }
+            else if(inputInt > guessedNumber) {
+                Console.WriteLine("This number is bigger then guessed number");
+            }
+            else if(inputInt < guessedNumber) {
+                Console.WriteLine("This number is less then guessed number");
+            }
 
             Console.WriteLine("Try again");
-
-        } while(input != "exit");
+        } while(true);
 
     }
 
