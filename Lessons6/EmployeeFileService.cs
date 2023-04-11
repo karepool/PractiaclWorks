@@ -1,14 +1,19 @@
 ﻿namespace Lesson6;
 
-public static class EmployeeFileService {
+public class EmployeeFileService {
 
-    public static void AddEmployee() {
+    public EmployeeFileService(string filePath) {
+        _filePath = filePath;
+        if(!File.Exists(_filePath))
+            File.Create(filePath).Close();
+    }
+
+    private string _filePath;
+
+    public void AddEmployee() {
         Employee employee = new Employee();
 
         Console.WriteLine("Enter the data. ");
-
-        Console.Write("Id: ");
-        employee.Id = int.Parse(Console.ReadLine());
 
         Console.Write("Full name: ");
         employee.FullName = Console.ReadLine();
@@ -30,7 +35,7 @@ public static class EmployeeFileService {
         WriteToFile(employee);
     }
 
-    public static void PrintEmployeesInfo() {
+    public void PrintEmployeesInfo() {
         int j = 0;
         string[] fileInfo = ReadFromFile();
 
@@ -75,8 +80,8 @@ public static class EmployeeFileService {
         }       
     }
 
-    private static void WriteToFile(Employee employee) {
-        using(var sw = new StreamWriter("out.txt", true)) {
+    private void WriteToFile(Employee employee) {
+        using(var sw = new StreamWriter(_filePath, true)) {
             sw.Write(employee.Id + "#" +
                 employee.FullName + "#" +
                 employee.Age + "#" +
@@ -88,10 +93,10 @@ public static class EmployeeFileService {
         }
     }
 
-    private static string[] ReadFromFile() { 
+    private string[] ReadFromFile() { 
         string[] result;
         
-        using(var sr = new StreamReader("out.txt")) {
+        using(var sr = new StreamReader(_filePath)) {
             result = (sr.ReadToEnd()).Split("#"); 
         }
 
