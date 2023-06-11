@@ -21,8 +21,9 @@ struct WorkerRepository {
     }
 
     public void DeleteWorker(int id) {
+        Worker[] workers = GetAllWorkers();
         _file.ClearFile();
-        foreach(Worker worker in GetAllWorkers())
+        foreach(Worker worker in workers)
             if(worker.Id != id)
                 _file.WriteToFile(worker);
     }
